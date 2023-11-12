@@ -1,0 +1,149 @@
+<예제 10-1>
+#include <stdio.h>
+
+int main(void)
+{
+int i = 10;
+int *ptr = &i;
+
+printf("ptr의 주소 값 : %p\n", &ptr);
+printf("i의 주소 값 : %p\n", &i);
+printf("i의 주소 값 : %p\n\n", ptr);
+
+printf("i의 값 : %d\n", i);
+printf("i의 값 : %d\n", *ptr);
+
+return 0;
+}
+
+포인터를 왜 사용하는지 이 예제를 해보니까 알 것 같아
+
+그러게 근데 익숙해지기 전이라 그런지 많이 까다로운 것 같네
+
+<예제 10-2>
+#include <stdio.h>
+
+int main(void)
+{
+int i = 10;
+int *ptr = &i;
+*ptr = i + 20;
+printf("i값 : %d\n", i);
+ 
+i = i + 20;
+printf("i값 : %d \n", *ptr);
+
+return 0;
+}
+
+포인터를 하게 되면 *ptr과 i가 연결되어 1가지만 사칙연산해도 결과가 공유되는걸 알게 된 것 같아
+
+만약 활용한다고 하면 여러가지에 사용 가능할 것 같아
+
+<예제 10-3>
+#include <stdio.h>
+
+void Swap(int a, int b);
+int main(void)
+{
+int x = 10, y = 5;
+printf("Swap() 함수 실행 전\n");
+printf("x = %d, y = %d이다.\n\n", x, y);
+
+Swap(x, y);
+printf("Swap() 함수 실행 후\n");
+printf("x = %d, y = %d이다.\n", x, y);
+
+return 0;
+
+void Swap(int a, int b)
+{
+int temp;
+temp = a;
+a = b;
+b = temp;
+}
+
+함수는 언제나 쓰일 수 있어서 잘 숙지하고 있어야 될 것 같아
+
+코딩에서 함수가 중요하다는 얘기를 예전부터 들어와서 다행인 것 같아
+
+<예제 10-4>
+#include <stdio.h>
+
+void Swap(int* a, int* b);
+int main(void)
+{
+int x = 10, y = 5;
+printf("Swap() 함수 실행 전\n");
+printf("x = %d, y = %d이다.\n\n", x, y);
+
+Swap(&x, &y);
+printf("Swap() 함수 실행 후\n");
+printf("x = %d, y = %d이다.\n", x, y);
+
+return 0;
+
+void Swap(int* a, int* b)
+{
+int temp;
+temp = *a;
+*a = *b;
+*b = temp;
+}
+
+포인터를 사용하는 이유를 조금은 알 것 같아
+
+어떤 변수든 저장하고 쉽고 편리하게 사용 가능한 거 같아
+
+<예제 10-6>
+#include <stdio.h>
+
+int main(void)
+{
+int a[] = {10, 20, 30, 40, 50};
+int *p = a;
+int i;
+
+printf("배열명 a를 이용한 주소 표현\n");
+for(i = 0; i < 5; i++)
+printf("a[%d]의 주소 %p\n", i, a + i);
+
+printf("\n포인터p를 이용한 배열 주소 표현\n");
+for(i = 0; i < 5; i++)
+printf("a[%d]의 주소 %p\n", i, p + i);
+
+printf("\n포인터p를 이용한 배열값 표현\n");
+for(i = 0; i < 5; i++)
+printf("a[%d] = %d\n", i, *(p + i));
+
+return 0;
+}
+
+포인터를 활용하면 배열 값을 쉽게 알아낼 수 있을 것 같아
+
+<예제 10-8>
+#include <stdio.h>
+
+int SumArray(int* pA, int Size);
+int main(void)
+{
+int a[ ] = {10, 5, 15, 25, 7};
+int Sum;
+Sum = SumArray(a, 5); // 함수 호출
+printf("배열의 합 : %d \n", Sum);
+
+return 0;
+}
+
+int SumArray(int* pA, int Size)
+{
+int result = 0, i;
+
+for(i = 0; i < Size; i+ +)
+result += pA[i];
+// result += *(pA + i);
+// result += *pA+ +;
+
+return result;
+}
