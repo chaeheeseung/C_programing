@@ -1,0 +1,70 @@
+#include <stdio.h>
+int Max(int* pArr, int size);
+int Min(int* pArr, int size);
+int Sorting(int* pArr, int size);
+
+
+int main(void)
+
+{
+   int b[] = { 20, 34, 12, 24, 54, 91, 9, 40, 81, 10 };
+   int *pArr = b;
+   int size = 10;
+   int i;
+   printf("최댓값 ==> %2d\n", Max(pArr, size));
+   printf("최솟값 ==> %2d\n", Min(pArr, size));
+   printf("내림차순 전 ==> ");
+   for (i = 0; i < size; i++)
+   {
+      printf("%2d", *(pArr + i));
+      printf(" ");
+   }
+   printf("\n");
+   printf("내림차순 후 ==> ");
+   Sorting(pArr, size);
+   for (i = 0; i < size; i++)
+   {
+      printf("%2d", *(pArr + i));
+      printf(" ");
+   }
+   return 0;
+}
+
+int Max(int* pArr, int size)
+{
+   int i;
+   int Max_Val = pArr[0];
+   for (i = 0; i < size; i++)
+   {
+      if (Max_Val < *(pArr + i))
+         Max_Val = *(pArr + i);
+   }
+   return Max_Val;
+}
+
+int Min(int* pArr, int size)
+{
+   int i;
+   int Max_Val = pArr[0];
+   for (i = 0; i < size; i++)
+   {
+      if (Max_Val > *(pArr + i))
+         Max_Val = *(pArr + i);
+   }
+   return Max_Val;
+}
+
+int Sorting(int* pArr, int size)
+{
+   int i, j;
+   for (i = 0; i < size; i++)
+      for (j = 0; j < size; j++)
+      {
+         if (*(pArr + j) < *(pArr + j + 1))
+         {
+            int k = *(pArr + j + 1);
+            *(pArr + j + 1) = *(pArr + j);
+            *(pArr + j) = k;
+         }
+      }
+}
