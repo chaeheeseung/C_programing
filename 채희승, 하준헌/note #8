@@ -1,0 +1,196 @@
+이제는 코딩으로 파일을 직접 다룰 수도 있게 됐네
+
+그러게 배운게 많아서 나중에 또 보면 까먹는 것도 있을 거같아
+
+#include <stdio.h>
+#include <stdlib.h
+#define LINE 30
+
+int main(void)
+{
+  FILE* fp1, *fp2;
+  char line[LINE];
+
+  fp1 = fopen("lineInput.txt", "r");
+
+  if(fp1 = = NULL)
+  {
+  printf("파일을열 수 없습니다.\n");
+  exit(1);
+  }
+
+  fp2 = fopen("linetarget.txt", "w");
+
+  while(fgets(line, LINE, fp1) != NULL)
+  fputs(line, fp2);
+
+  fclose(fp1);
+  fclose(fp2);
+
+  return 0;
+}
+
+파일에 저장할 문자를 fputs()함수를 이용해서 다른 파일에 똑같이 출력할 수 있는 것 같아
+
+이 코딩을 이용하면 다른 파일에 저장되있던 내용을 원하는 파일로 바로 옮겨서 출력 시킬 수 있게 되겠네
+
+응용해서 사용하면 다른 사람에게 보내줘야하는 파일을 코딩을 통해서 그 사람의 파일로 출력 시켜서 줄 수도 있겠네
+
+그렇게 되면 파일을 주고받는 것 보다 바로 출력시킬 수 있으니까 더 단순하겠네
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+  FILE* fp;
+  int n = 4000;
+  if((fp = fopen("basic.txt", "wb")) = = NULL)
+  {
+  printf("파일을 열 수 없습니다.\n");
+  exit(1);
+  }
+
+  fwrite(&n, sizeof(int), 1, fp);
+
+  fclose(fp);
+  return 0;
+}
+
+fwrite()함수를 이용한 코딩인데 ? 하나만 떠서 뭔가 김이 세는 것 같네
+
+그건 아마 6줄에서 *이 한번만 쓰여서 그럴거야 fwrite()함수는 블록단위로 입출력하는데 자료형의 바이트 크기 * 블록 수 만큼 파일에서 데이터를
+읽어오거나 기록하니까 *이 한번만 쓰여서 ? 하나만 출력 된 것 같아
+
+아 그럼 *를 많이 사용하면 파일에서 데이터를 더 많이 읽어오니까 더 많은 내용이 출력되겠네
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct students{
+char name[40];
+char address[40];
+int age;
+};
+
+typedef struct students student;
+
+int main(void)
+{
+  FILE* fp1;
+
+  student st1 = {"홍길동", "서울", 30}, st2;
+
+  if((fp1 = fopen("basic.txt", "w")) = = NULL)
+{
+    printf("파일을 열 수 없습니다.\n");
+    exit(1);
+  }
+
+  fprintf(fp1, "%s %s %d\n", st1.name, st1.address, st1.age);
+  fclose(fp1);
+
+  if((fp1 = fopen("basic.txt", "r")) = = NULL)
+  {
+  printf("파일을 열 수 없습니다.\n");
+  exit(1);
+  }
+
+  fscanf(fp1, "%s %s %d\n", st2.name, st2.address, &st2.age);
+  printf("이름 : %s, 거주지 : %s, 나이 : %d\n\n", st2.name, st2.address, st2.age);
+
+  fclose(fp1);
+  return 0;
+}
+
+함수를 사용하는데 변수가 안보여서 의아했는데 fprintf()랑 fscanf()함수에서 사용되네
+
+뭔가 익숙한 것 같았는데 앞에 f만 붙은 printf()랑 scanf()함수였네
+
+파일에 저장된 데이터 크기를 변환시키고 읽어들인 항목 수를 반환해주는 함수네
+
+원래 쓰였던 함수랑 파일 포인터를 제외하면 똑같은 형식이네
+
+이 함수로 이름, 거주지, 나이처럼 특정 자료를 출력 시킬 수 있겠됐네
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(void)
+{
+  FILE* fp;
+  char str[10];
+
+  if((fp = fopen("data.txt", "wb")) = = NULL)
+  {
+  printf("파일을 열 수 없습니다.\n");
+  exit(1);
+  }
+
+  fprintf(fp, "abcdefghij");
+  fclose(fp);
+
+  if((fp = fopen("data.txt", "rb")) = = NULL)
+  {
+  printf("파일을 열 수 없습니다.\n");
+  exit(1);
+  }
+
+  fgets(str, 11, fp);
+  printf("str 문장 출력 : %s\n\n", str);
+
+  fseek(fp, 4L, SEEK_SET);
+  fgets(str, 3, fp);
+  printf("4번째부터 2글자 출력 : %s\n", str);
+
+  fseek(fp, -3L, SEEK_CUR);
+  fgets(str, 3, fp);
+  printf("현 위치의 3글자 앞에서부터 2글자 출력 : %s\n",str);
+
+  fseek(fp, -9L, SEEK_END);
+  fgets(str, 5, fp);
+  printf("맨 뒤에서 9글자 앞에서부터 4글자 출력 : %s\n", str);
+  fclose(fp);
+
+  return 0;
+}
+
+fseek() 함수를 사용해서 파일에 문장을 출력하고 현위치를 골라 글자의 위치를 골라서 출력할 수 있게 해주네
+
+이런 함수는 응용할 수 있는게 뭐가 있을까
+
+그러게 당장은 자세하게 생각은 안나도 뭔가 퍼즐게임에서 사용 할 수 있지 않을까
+
+<연습문제 6>
+
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+
+    file = fopen("basic.txt", "w");
+    if (file == NULL) {
+        printf("파일을 열 수 없습니다.");
+        return 1;
+    }
+
+
+    int n = 5;
+    for (int i = 1; i <= n; i++) {
+        int sum = 0;
+        for (int j = 1; j <= i; j++) {
+            sum += j;
+            fprintf(file, "%d ", j);
+        }
+        fprintf(file, " ");
+        fprintf(file, "%d ", sum);
+    }
+    fclose(file);
+
+    return 0;
+}
+
+코딩을 해보는데 결과가 원하는데로 안뜨네
+
+일단 시간이 없으니까 나중에 다시 같이 코딩해보면서 해보자
