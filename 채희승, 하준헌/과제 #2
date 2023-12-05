@@ -1,0 +1,404 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+struct in {
+   char Title[10];
+   char Authors[10];
+   char Press[10];
+   char Page[10];
+   char Price[10];
+   char borrow[20];
+};
+
+struct Books {
+   char Title[10];
+   char Authors[10];
+   char Press[10];
+   int Page;
+   int Price;
+   char borrow[20];
+};
+
+int main(void)
+{
+   char str1[] = "도서목록";
+   char str2[] = "검색";
+   char str3[] = "대출";
+   char str4[] = "반납";
+   char str5[] = "종료";
+
+   char avail[] = "available";
+   char borrow[] = "borrowing";
+
+   char ch1[10];
+   char ch2[10];
+   char ch3[10];
+   char ch4[10];
+   int i;
+
+   struct in in1;
+   strcpy(in1.Title, "Title");
+   strcpy(in1.Authors, "Authors");
+   strcpy(in1.Press, "Press");
+   strcpy(in1.Page, "Page");
+   strcpy(in1.Price, "Price");
+   strcpy(in1.borrow, "borrow");
+
+   struct Books Books1;
+   strcpy(Books1.Title, "Truth");
+   strcpy(Books1.Authors, "John");
+   strcpy(Books1.Press, "Century");
+   Books1.Page = 300;
+   Books1.Price = 20000;
+   strcpy(Books1.borrow, "available");
+
+   struct Books Books2;
+   strcpy(Books2.Title, "Love");
+   strcpy(Books2.Authors, "Paul");
+   strcpy(Books2.Press, "Goods");
+   Books2.Page = 200;
+   Books2.Price = 15000;
+   strcpy(Books2.borrow, "available");
+
+   struct Books Books3;
+   strcpy(Books3.Title, "Joy");
+   strcpy(Books3.Authors, "James");
+   strcpy(Books3.Press, "Cookie");
+   Books3.Page = 250;
+   Books3.Price = 18000;
+   strcpy(Books3.borrow, "available");
+
+   struct Books Books4;
+   strcpy(Books4.Title, "Thanks");
+   strcpy(Books4.Authors, "Mark");
+   strcpy(Books4.Press, "Saejong");
+   Books4.Page = 240;
+   Books4.Price = 21000;
+   strcpy(Books4.borrow, "available");
+
+   struct Books Books5;
+   strcpy(Books5.Title, "God");
+   strcpy(Books5.Authors, "Johnson");
+   strcpy(Books5.Press, "Jungjo");
+   Books5.Page = 450;
+   Books5.Price = 35000;
+   strcpy(Books5.borrow, "available");
+
+   struct Books Booksup1;
+   strcpy(Booksup1.Title, "TRUTH");
+
+   struct Books Booksup2;
+   strcpy(Booksup1.Title, "LOVE");
+
+   struct Books Booksup3;
+   strcpy(Booksup1.Title, "JOY");
+
+   struct Books Booksup4;
+   strcpy(Booksup1.Title, "THANKS");
+
+   struct Books Booksup5;
+   strcpy(Booksup1.Title, "GOD");
+
+   struct Books Bookslow1;
+   strcpy(Bookslow1.Title, "truth");
+
+   struct Books Bookslow2;
+   strcpy(Bookslow2.Title, "love");
+
+   struct Books Bookslow3;
+   strcpy(Bookslow3.Title, "joy");
+
+   struct Books Bookslow4;
+   strcpy(Bookslow4.Title, "thanks");
+
+   struct Books Bookslow5;
+   strcpy(Bookslow5.Title, "god");
+
+   printf("[도서목록] [검색] [대출] [반납] [종료] \n\n");
+
+   while (1)
+   {
+      scanf(" %s", &ch1);
+
+      int val1 = strcmp(str1, ch1);
+      int val2 = strcmp(str2, ch1);
+      int val3 = strcmp(str3, ch1);
+      int val4 = strcmp(str4, ch1);
+      int val5 = strcmp(str5, ch1);
+
+      if (val1 == 0)
+      {
+         printf("%10s %10s %10s %10s %10s \n", in1.Title, in1.Authors, in1.Press, in1.Page, in1.Price);
+         printf("---------- ---------- ---------- ---------- ---------- \n");
+         printf("%10s %10s %10s %10d %10d \n", Books1.Title, Books1.Authors, Books1.Press, Books1.Page, Books1.Price);
+         printf("%10s %10s %10s %10d %10d \n", Books2.Title, Books2.Authors, Books2.Press, Books2.Page, Books2.Price);
+         printf("%10s %10s %10s %10d %10d \n", Books3.Title, Books3.Authors, Books3.Press, Books3.Page, Books3.Price);
+         printf("%10s %10s %10s %10d %10d \n", Books4.Title, Books4.Authors, Books4.Press, Books4.Page, Books4.Price);
+         printf("%10s %10s %10s %10d %10d \n\n", Books5.Title, Books5.Authors, Books5.Press, Books5.Page, Books5.Price);
+      }
+      else if (val2 == 0)
+      {
+         printf("검색할 도서를 선택하세요. \n책 제목(Title): ");
+         scanf("%s", &ch2);
+
+         int val_1 = strcmp(Books1.Title, ch2);
+         int val_2 = strcmp(Books2.Title, ch2);
+         int val_3 = strcmp(Books3.Title, ch2);
+         int val_4 = strcmp(Books4.Title, ch2);
+         int val_5 = strcmp(Books5.Title, ch2);
+
+         int up1_1 = strcmp(Booksup1.Title, ch2);
+         int up2_1 = strcmp(Booksup2.Title, ch2);
+         int up3_1 = strcmp(Booksup3.Title, ch2);
+         int up4_1 = strcmp(Booksup4.Title, ch2);
+         int up5_1 = strcmp(Booksup5.Title, ch2);
+
+         int low1_1 = strcmp(Bookslow1.Title, ch2);
+         int low2_1 = strcmp(Bookslow2.Title, ch2);
+         int low3_1 = strcmp(Bookslow3.Title, ch2);
+         int low4_1 = strcmp(Bookslow4.Title, ch2);
+         int low5_1 = strcmp(Bookslow5.Title, ch2);
+
+         if (val_1 == 0 || up1_1 == 0 || low1_1 == 0)
+         {
+            printf("\n%10s %10s %10s %10s %10s %10s \n", in1.Title, in1.Authors, in1.Press, in1.Page, in1.Price, in1.borrow);
+            printf("---------- ---------- ---------- ---------- ---------- \n");
+            printf("%10s %10s %10s %10d %10d %10s \n\n", Books1.Title, Books1.Authors, Books1.Press, Books1.Page, Books1.Price, Books1.borrow);
+         }
+         else if (val_2 = 0 || up2_1 == 0 || low2_1 == 0)
+         {
+            printf("\n%10s %10s %10s %10s %10s %10s \n", in1.Title, in1.Authors, in1.Press, in1.Page, in1.Price, in1.borrow);
+            printf("---------- ---------- ---------- ---------- ---------- \n");
+            printf("%10s %10s %10s %10d %10d %10s \n\n", Books2.Title, Books2.Authors, Books2.Press, Books2.Page, Books2.Price, Books2.borrow);
+         }
+         else if (val_3 = 0 || up3_1 == 0 || low3_1 == 0)
+         {
+            printf("\n%10s %10s %10s %10s %10s %10s \n", in1.Title, in1.Authors, in1.Press, in1.Page, in1.Price, in1.borrow);
+            printf("---------- ---------- ---------- ---------- ---------- \n");
+            printf("%10s %10s %10s %10d %10d %10s \n\n", Books3.Title, Books3.Authors, Books3.Press, Books3.Page, Books3.Price, Books3.borrow);
+         }
+         else if (val_4 = 0 || up4_1 == 0 || low4_1 == 0)
+         {
+            printf("\n%10s %10s %10s %10s %10s %10s \n", in1.Title, in1.Authors, in1.Press, in1.Page, in1.Price, in1.borrow);
+            printf("---------- ---------- ---------- ---------- ---------- \n");
+            printf("%10s %10s %10s %10d %10d %10s \n\n", Books4.Title, Books4.Authors, Books4.Press, Books4.Page, Books4.Price, Books4.borrow);
+         }
+         else if (val_5 = 0 || up5_1 == 0 || low5_1 == 0)
+         {
+            printf("\n%10s %10s %10s %10s %10s %10s \n", in1.Title, in1.Authors, in1.Press, in1.Page, in1.Price, in1.borrow);
+            printf("---------- ---------- ---------- ---------- ---------- \n");
+            printf("%10s %10s %10s %10d %10d %10s \n\n", Books5.Title, Books5.Authors, Books5.Press, Books5.Page, Books5.Price, Books5.borrow);
+         }
+         else
+         {
+            printf("보유하고 있지 않음\n\n");
+         }
+      }
+      else if (val3 == 0)
+      {
+         printf("대출할 책의 이름: ");
+         scanf("%s", ch3);
+
+         int val3_1 = strcmp(Books1.Title, ch3);
+         int val3_2 = strcmp(Books2.Title, ch3);
+         int val3_3 = strcmp(Books3.Title, ch3);
+         int val3_4 = strcmp(Books4.Title, ch3);
+         int val3_5 = strcmp(Books5.Title, ch3);
+
+         int up1_2 = strcmp(Booksup1.Title, ch3);
+         int up2_2 = strcmp(Booksup2.Title, ch3);
+         int up3_2 = strcmp(Booksup3.Title, ch3);
+         int up4_2 = strcmp(Booksup4.Title, ch3);
+         int up5_2 = strcmp(Booksup5.Title, ch3);
+
+         int low1_2 = strcmp(Bookslow1.Title, ch3);
+         int low2_2 = strcmp(Bookslow2.Title, ch3);
+         int low3_2 = strcmp(Bookslow3.Title, ch3);
+         int low4_2 = strcmp(Bookslow4.Title, ch3);
+         int low5_2 = strcmp(Bookslow5.Title, ch3);
+
+         if (val3_1 == 0 || up1_2 == 0 || low1_2 == 0)
+         {
+            int val3_1_1 = strcmp(Books1.borrow, avail);
+            int val3_1_2 = strcmp(Books1.borrow, borrow);
+            if (val3_1_1 == 0)
+            {
+               printf("대출 되었습니다.\n\n");
+               strcpy(Books1.borrow, "borrowing");
+            }
+            else if (val3_1_2 == 0)
+            {
+               printf("대출 중이라 대출 할 수 없습니다.\n\n");
+            }
+         }
+         else if (val3_2 == 0 || up2_2 == 0 || low2_2 == 0)
+         {
+            int val3_2_1 = strcmp(Books2.borrow, avail);
+            int val3_2_2 = strcmp(Books2.borrow, borrow);
+            if (val3_2_1 == 0)
+            {
+               printf("대출 되었습니다.\n\n");
+               strcpy(Books2.borrow, "borrowing");
+            }
+            else if (val3_2_2 == 0)
+            {
+               printf("대출 중이라 대출 할 수 없습니다.\n\n");
+            }
+         }
+         else if (val3_3 == 0 || up3_2 == 0 || low3_2 == 0)
+         {
+            int val3_3_1 = strcmp(Books3.borrow, avail);
+            int val3_3_2 = strcmp(Books3.borrow, borrow);
+            if (val3_3_1 == 0)
+            {
+               printf("대출 되었습니다.\n\n");
+               strcpy(Books3.borrow, "borrowing");
+            }
+            else if (val3_3_2 == 0)
+            {
+               printf("대출 중이라 대출 할 수 없습니다.\n\n");
+            }
+         }
+         else if (val3_4 == 0 || up4_2 == 0 || low4_2 == 0)
+         {
+            int val3_4_1 = strcmp(Books4.borrow, avail);
+            int val3_4_2 = strcmp(Books4.borrow, borrow);
+            if (val3_4_1 == 0)
+            {
+               printf("대출 되었습니다.\n\n");
+               strcpy(Books4.borrow, "borrowing");
+            }
+            else if (val3_4_2 == 0)
+            {
+               printf("대출 중이라 대출 할 수 없습니다.\n\n");
+            }
+         }
+         else if (val3_5 == 0 || up5_2 == 0 || low5_2 == 0)
+         {
+            int val3_5_1 = strcmp(Books5.borrow, avail);
+            int val3_5_2 = strcmp(Books5.borrow, borrow);
+            if (val3_5_1 == 0)
+            {
+               printf("대출 되었습니다.\n\n");
+               strcpy(Books5.borrow, "borrowing");
+            }
+            else if (val3_5_2 == 0)
+            {
+               printf("대출 중이라 대출 할 수 없습니다.\n\n");
+            }
+         }
+         else
+         {
+            printf("보유하고 있지 않음\n\n");
+         }
+      }
+      else if (val4 == 0)
+      {
+         printf("반납할 책 이름: ");
+         scanf("%s", ch4);
+
+         int val4_1 = strcmp(Books1.Title, ch4);
+         int val4_2 = strcmp(Books2.Title, ch4);
+         int val4_3 = strcmp(Books3.Title, ch4);
+         int val4_4 = strcmp(Books4.Title, ch4);
+         int val4_5 = strcmp(Books5.Title, ch4);
+
+         int up1_3 = strcmp(Booksup1.Title, ch4);
+         int up2_3 = strcmp(Booksup2.Title, ch4);
+         int up3_3 = strcmp(Booksup3.Title, ch4);
+         int up4_3 = strcmp(Booksup4.Title, ch4);
+         int up5_3 = strcmp(Booksup5.Title, ch4);
+
+         int low1_3 = strcmp(Bookslow1.Title, ch4);
+         int low2_3 = strcmp(Bookslow2.Title, ch4);
+         int low3_3 = strcmp(Bookslow3.Title, ch4);
+         int low4_3 = strcmp(Bookslow4.Title, ch4);
+         int low5_3 = strcmp(Bookslow5.Title, ch4);
+
+         if (val4_1 == 0 || up1_3 == 0 || low1_3 == 0)
+         {
+            int val4_1_1 = strcmp(Books1.borrow, avail);
+            int val4_1_2 = strcmp(Books1.borrow, borrow);
+            if (val4_1_1 == 0)
+            {
+               printf("대출 되지 않은 책입니다.\n\n");
+            }
+            else if (val4_1_2 == 0)
+            {
+               printf("책이 반납 되었습니다.\n\n");
+               strcpy(Books1.borrow, "available");
+            }
+         }
+         else if (val4_2 == 0 || up2_3 == 0 || low2_3 == 0)
+         {
+            int val4_2_1 = strcmp(Books2.borrow, avail);
+            int val4_2_2 = strcmp(Books2.borrow, borrow);
+            if (val4_2_1 == 0)
+            {
+               printf("대출 되지 않은 책입니다.\n\n");
+            }
+            else if (val4_2_2 == 0)
+            {
+               printf("책이 반납 되었습니다.\n\n");
+               strcpy(Books2.borrow, "available");
+            }
+         }
+         else if (val4_3 == 0 || up3_3 == 0 || low3_3 == 0)
+         {
+            int val4_3_1 = strcmp(Books3.borrow, avail);
+            int val4_3_2 = strcmp(Books3.borrow, borrow);
+            if (val4_3_1 == 0)
+            {
+               printf("대출 되지 않은 책입니다.\n\n");
+            }
+            else if (val4_3_2 == 0)
+            {
+               printf("책이 반납 되었습니다.\n\n");
+               strcpy(Books3.borrow, "available");
+            }
+         }
+         else if (val4_4 == 0 || up4_3 == 0 || low4_3 == 0)
+         {
+            int val4_4_1 = strcmp(Books4.borrow, avail);
+            int val4_4_2 = strcmp(Books4.borrow, borrow);
+            if (val4_4_1 == 0)
+            {
+               printf("대출 되지 않은 책입니다.\n\n");
+            }
+            else if (val4_4_2 == 0)
+            {
+               printf("책이 반납 되었습니다.\n\n");
+               strcpy(Books4.borrow, "available");
+            }
+         }
+         else if (val4_5 == 0 || up5_3 == 0 || low5_3 == 0)
+         {
+            int val4_5_1 = strcmp(Books5.borrow, avail);
+            int val4_5_2 = strcmp(Books5.borrow, borrow);
+            if (val4_5_1 == 0)
+            {
+               printf("대출 되지 않은 책입니다.\n\n");
+            }
+            else if (val4_5_2 == 0)
+            {
+               printf("책이 반납 되었습니다.\n\n");
+               strcpy(Books5.borrow, "available");
+            }
+         }
+         else
+         {
+            printf("보유하고 있지 않음\n\n");
+         }
+      }
+      else if (val5 == 0)
+      {
+         break;
+      }
+      else
+      {
+         printf("잘못 입력하셨습니다.\n\n");
+      }
+   }
+   return 0;
+}
